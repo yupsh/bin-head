@@ -55,7 +55,12 @@ func newApp(version string, stdin io.Reader, stdout io.Writer, fs afero.Fs) *cli
 		// os.Exit, so the exit code stays testable.
 		ExitErrHandler: func(context.Context, *cli.Command, error) {},
 		Flags: []cli.Flag{
-			&cli.IntFlag{Name: flagLines, Aliases: []string{"n"}, Value: 10, Usage: "print the first NUM lines instead of the first 10"},
+			&cli.IntFlag{
+				Name:    flagLines,
+				Aliases: []string{"n"},
+				Value:   10,
+				Usage:   "print the first NUM lines instead of the first 10",
+			},
 			&cli.IntFlag{Name: flagBytes, Aliases: []string{"c"}, Usage: "print the first NUM bytes"},
 		},
 		Action: action(stdin, stdout, fs),
